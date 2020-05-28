@@ -57,25 +57,28 @@
       </header>
 
       <main class="container-main">
+        <!-- title -->
         <div class="block-title">
           <h1>Appareils photo vintage</h1>
           <h2>Appareils photographiques anciens et rares, dédiés aux collectionneurs passionnés</h2>
         </div>
+        <!-- end title -->
 
+        <!-- article -->
+
+        <!-- image -->
         <div class="block-article block-article--content">
           <div class="img-container">
-            <img
-              class="block-article__img block-article__img--content"
-              src="./images/vcam_1-big.jpg"
-              alt="Appareil photo Zurss 50S"
-            />
+            <img id="img-article" class="block-article__img block-article__img--content" alt="Image Appareil photo" />
           </div>
+          <!-- end image -->
 
           <div>
-            <!-- titres -->
-            <h3>Appareil photo: Zurss 50S</h3>
+            <!-- titre -->
+            <h3 id="h3-article">produit</h3>
+            <!-- end titre -->
 
-            <!-- choix des lentilles -->
+            <!-- menu déroulant -->
             <form method="POST" action="">
               <p>
                 <label for="lentilles">Choisissez la lentille</label><br />
@@ -85,23 +88,18 @@
                 </select>
               </p>
             </form>
-            <!-- end choix des lentilles-->
+            <!-- end menu déroulant -->
 
             <!-- description -->
-            <ul>
-              <li><strong> Marque :</strong> Zurss 50S</li>
-              <li>
-                <strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.
-              </li>
-              <li><strong>Prix :</strong> 1200€</li>
-            </ul>
-            <!-- end description -->
+            <p id="description-article">description</p>
 
-            <!-- button -->
+            <!-- prix -->
+            <h4 id="price-article">prix</h4>
+
             <a class="add-cart btn" href="#">Valider le panier</a>
           </div>
         </div>
+        <!-- end article -->
       </main>
 
       <footer>
@@ -112,6 +110,6 @@
       </footer>
     </div>
 
-    <script src="main.js"></script>
+    <script src="produits.js"></script>
   </body>
 </html>

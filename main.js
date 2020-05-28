@@ -5,44 +5,41 @@ request.send();
 
 //attente reponse et appel fonction de retour
 request.onreadystatechange = function () {
-  // si tout c'est bien passée
   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    // recuperation de la liste de produits
-    let products = JSON.parse(this.responseText);
-    //appel de la fonction d'affichage des produits
-    showListProducts(products);
+    // si tout c'est bien passée
+    let products = JSON.parse(this.responseText); // recuperation de la liste de produits
+    showListProducts(products); //appel de la fonction d'affichage des produits
   }
 };
 
 //declaration de la fonction d'affichage des produits
-let showListProducts = function (products) {
-  let listProducts = document.getElementById("listProducts");
-  console.log(products);
-  let contentHtml = "";
-  for (let i = 0; i < products.length; i++) {
-    contentHtml =
-      contentHtml +
-      "<a class=" +
-      '"block-article"' +
-      "href=" +
-      '"produit.html">' +
-      "<img class=" +
-      '"block-article__img"' +
-      "src=" +
-      products[i].imageUrl +
-      ">" +
-      "<h3>Appareil photo: " +
-      products[i].name +
-      "</h3>" +
-      "<div>Prix : " +
-      products[i].price +
-      " €</div>";
-    ("></a>");
-  }
-  listProducts.innerHTML = contentHtml;
-};
+const showListProducts = (articles) => {
+  for (let i in articles) {
+    // ajout du lien a
+    const a = document.createElement("a"); //creation d' un lien a
+    a.className = "block-article"; // ajout de la class
+    a.href = "produit.html?id=" + articles[i]._id;
+    const parent = document.getElementById("listProducts"); // ou je vais appliquer le a
+    parent.appendChild(a); // ajout de a dans l'element parent
 
-let productContent = document.getElementsById("listProducts");
-productContent.addEventListener("click", function () {
-  console.log("ciao a tutti !");
-});
+    // creation de la div
+    const div = document.createElement("div"); //creation d'une div
+    a.appendChild(div); // ajout de la div dans l'element parent
+
+    // ajout des images
+    const img = document.createElement("img");
+    img.className = "block-article__img";
+    img.src = articles[i].imageUrl;
+    div.appendChild(img);
+
+    // ajout de name
+    const h3 = document.createElement("h3");
+    div.appendChild(h3);
+    h3.innerHTML = articles[i].name;
+
+    // ajout de price
+    const p = document.createElement("p");
+    div.appendChild(p);
+    p.innerHTML = "Prix de l'article : " + articles[i].price + " €";
+  }
+};
