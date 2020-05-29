@@ -38,6 +38,7 @@ body {
 }
 .block-article .block-article__img--content {
   width: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
 }

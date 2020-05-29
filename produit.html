@@ -51,7 +51,7 @@
           </a>
           <a href="panier.html">
             <i class="fas fa-cart-arrow-down cart-animation"></i>
-            <div id="number-articles">0</div>
+            <div id="number-articles"></div>
           </a>
         </div>
       </header>
@@ -82,10 +82,7 @@
             <form method="POST" action="">
               <p>
                 <label for="lentilles">Choisissez la lentille</label><br />
-                <select name="lentilles" id="lentilles">
-                  <option value="14mm">EF 14mm f/2,8L II USM</option>
-                  <option value="20mm">EF 20mm f/2.8 USM</option>
-                </select>
+                <select name="lentilles" id="lentilles"> </select>
               </p>
             </form>
             <!-- end menu déroulant -->
@@ -96,7 +93,8 @@
             <!-- prix -->
             <h4 id="price-article"></h4>
 
-            <a class="add-cart btn" href="#">Valider le panier</a>
+            <!-- button -->
+            <a id="btn-add" class="add-cart btn" href="#">Ajouter au panier</a>
           </div>
         </div>
         <!-- end article -->

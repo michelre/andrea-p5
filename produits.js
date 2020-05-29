@@ -1,6 +1,5 @@
 let params = new URL(document.location).searchParams;
 let idArticle = params.get("id");
-console.log(idArticle);
 
 //creation et envoie objet requete
 let request = new XMLHttpRequest();
@@ -10,23 +9,54 @@ request.send();
 //attente reponse et appel fonction de retour
 request.onreadystatechange = function () {
   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    // si tout c'est bien passée
-    let product = JSON.parse(this.responseText); // recuperation de la liste de produits
-    console.log(product.name); //appel de la fonction d'affichage des produits
+    let product = JSON.parse(this.responseText);
     showDetailsProduct(product);
+    addProduct(product);
   }
 };
 
 const showDetailsProduct = (article) => {
+  // image
+  const img = document.getElementById("img-article");
+  img.src = article.imageUrl;
+
+  // nom du produit
   const name = document.getElementById("h3-article");
   name.innerHTML = article.name;
 
+  // prix
   const price = document.getElementById("price-article");
   price.innerHTML = article.price + " €";
 
+  // description
   const description = document.getElementById("description-article");
   description.innerHTML = article.description;
 
-  const img = document.getElementById("img-article");
-  img.src = article.imageUrl;
+  // menu deroulant
+  const lenses = article.lenses;
+
+  for (let lens of lenses) {
+    const option = document.createElement("option");
+    const parent = document.getElementById("lentilles");
+    parent.appendChild(option);
+    option.innerHTML = lens;
+  }
+};
+
+const addProduct = (article) => {
+  const btnAdd = document.getElementById("btn-add");
+  btnAdd.addEventListener("click", function () {
+    event.preventDefault();
+
+    let listCart = [];
+
+    listCart.push(article);
+    localStorage.setItem("panier", JSON.stringify(listCart));
+
+    if (listCart != null) {
+      let myArticleJSON = localStorage.getItem("panier");
+      let myArticle = JSON.parse(myArticleJSON + myArticle);
+      console.log(myArticle);
+    }
+  });
 };
