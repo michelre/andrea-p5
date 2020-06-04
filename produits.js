@@ -48,15 +48,18 @@ const addProduct = (article) => {
   btnAdd.addEventListener("click", function () {
     event.preventDefault();
 
-    let listCart = [];
+    if (localStorage.getItem("cart")) {
+      let array = localStorage.getItem("cart");
+      let arrayJS = JSON.parse(array);
+      arrayJS.push(article);
+      localStorage.setItem("cart", JSON.stringify(arrayJS));
 
-    listCart.push(article);
-    localStorage.setItem("panier", JSON.stringify(listCart));
-
-    if (listCart != null) {
-      let myArticleJSON = localStorage.getItem("panier");
-      let myArticle = JSON.parse(myArticleJSON + myArticle);
-      console.log(myArticle);
+      console.log("si il y est deja" + localStorage.getItem("cart"));
+    } else {
+      let array = [];
+      array.push(article);
+      localStorage.setItem("cart", JSON.stringify(array));
+      console.log("si il y est pas" + localStorage.getItem("cart"));
     }
   });
 };

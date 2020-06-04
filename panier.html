@@ -61,24 +61,44 @@
           <h2>Pour finaliser la commande, veuillez valider votre panier</h2>
         </div>
 
-        <!-- 1 article -->
-        <a class="block-article" href="produit.html">
-          <div>
-            <img class="block-article__img" src="./images/vcam_1-small.jpg" alt="Appareil photo Zurss 50S" />
-          </div>
-          <div>
-            <h3>Appareil photo: Zurss 50S</h3>
-            <ul>
-              <li><strong> Marque :</strong> Zurss 50S</li>
-              <li><strong>Lentilles :</strong> 2 choix disponibles</li>
-              <li>
-                <strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua.
-              </li>
-              <li><strong>Prix :</strong> 1200€</li>
-            </ul>
-          </div>
-        </a>
+        <!-- liste panier -->
+        <div id="list-cart"></div>
+
+        <form>
+          <h2>Formulaire d'inscription</h2>
+          <!-- nom -->
+          <p>
+            <label for="surname">Nom</label> :
+            <input type="text" name="surname" id="surname" required />
+            <span id="help-surname"></span>
+          </p>
+          <!-- prenom -->
+          <p>
+            <label for="name">Prénom</label> :
+            <input type="text" name="name" id="name" required />
+            <span id="help-name"></span>
+          </p>
+          <!-- adresse -->
+          <p>
+            <label for="address">Adresse</label> :
+            <input type="text" name="address" id="address" required />
+            <span id="help-address"></span>
+          </p>
+          <!-- ville -->
+          <p>
+            <label for="city">Ville</label> :
+            <input type="text" name="city" id="city" required />
+            <span id="help-city"></span>
+          </p>
+          <!-- email -->
+          <p>
+            <label for="email">Courriel</label> :
+            <input type="email" name="email" id="email" required placeholder="utilisateur@domaine.fr" />
+            <span id="help-email"></span>
+          </p>
+          <!-- btn form -->
+          <input type="submit" value="Envoyer" />
+        </form>
 
         <a id="btn-validate" href="#" class="btn">Valider le panier</a>
       </main>
