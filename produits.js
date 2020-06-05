@@ -15,26 +15,26 @@ request.onreadystatechange = function () {
   }
 };
 
+// fonction pour montrer la liste des produits
 const showDetailsProduct = (article) => {
-  // image
+  // ajout image
   const img = document.getElementById("img-article");
   img.src = article.imageUrl;
 
-  // nom du produit
+  // ajout nom du produit
   const name = document.getElementById("h3-article");
   name.innerHTML = article.name;
 
-  // prix
+  // ajout prix
   const price = document.getElementById("price-article");
   price.innerHTML = article.price + " €";
 
-  // description
+  // ajout description
   const description = document.getElementById("description-article");
   description.innerHTML = article.description;
 
-  // menu deroulant
+  // ajout menu deroulant
   const lenses = article.lenses;
-
   for (let lens of lenses) {
     const option = document.createElement("option");
     const parent = document.getElementById("lentilles");
@@ -43,23 +43,28 @@ const showDetailsProduct = (article) => {
   }
 };
 
+// fonction pour ajouter des produits au panier
 const addProduct = (article) => {
   const btnAdd = document.getElementById("btn-add");
   btnAdd.addEventListener("click", function () {
-    event.preventDefault();
+    event.preventDefault(); // pour enlever les fonctions par défaut du bouton
 
+    // si le local storage existe
     if (localStorage.getItem("cart")) {
-      let array = localStorage.getItem("cart");
-      let arrayJS = JSON.parse(array);
-      arrayJS.push(article);
-      localStorage.setItem("cart", JSON.stringify(arrayJS));
+      let array = localStorage.getItem("cart"); // je récupère le local storage
+      let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
+      arrayJS.push(article); // je push dedans un nouveau article
+      localStorage.setItem("cart", JSON.stringify(arrayJS)); // je mets le nouveau array en localStorage
 
-      console.log("si il y est deja" + localStorage.getItem("cart"));
+      console.log("si il y est deja" + localStorage.getItem("cart")); // test
+
+      // sinon (si le local storage est vide)
     } else {
-      let array = [];
-      array.push(article);
-      localStorage.setItem("cart", JSON.stringify(array));
-      console.log("si il y est pas" + localStorage.getItem("cart"));
+      let array = []; // je crée un array vide
+      array.push(article); // je push dedans un nouveau article
+      localStorage.setItem("cart", JSON.stringify(array)); // je mets l'array en localStorage
+
+      console.log("si il y est pas" + localStorage.getItem("cart")); // test
     }
   });
 };
