@@ -64,6 +64,10 @@
         <!-- liste panier -->
         <div id="list-cart"></div>
 
+        <!-- total note -->
+        <div id="total"></div>
+
+        <!-- formulaire -->
         <form>
           <h2>Formulaire d'inscription</h2>
           <!-- nom -->
@@ -77,6 +81,12 @@
             <label for="name">Prénom</label> :
             <input type="text" name="name" id="name" required />
             <span id="help-name"></span>
+          </p>
+          <!-- date de naissance -->
+          <p>
+            <label for="date">Date de naissance</label> :
+            <input type="date" name="date" id="date" required />
+            <span id="help-date"></span>
           </p>
           <!-- adresse -->
           <p>
@@ -97,7 +107,7 @@
             <span id="help-email"></span>
           </p>
           <!-- btn form -->
-          <input type="submit" value="Envoyer" />
+          <!--<input id="btn-validate" type="submit" value="Valider" />-->
         </form>
 
         <a id="btn-validate" href="#" class="btn">Valider le panier</a>
