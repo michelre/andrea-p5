@@ -211,69 +211,60 @@ if (localStorage.getItem("email")) {
 // creation array pour envoye de la commande
 const btnValidate = document.getElementById("btn-validate");
 
-const validateCart = () => {
-  btnValidate.addEventListener("click", function () {
-    const arrayId = [];
-    event.preventDefault(); // pour enlever les fonctions par défaut du bouton
-    // si le local storage existe
-    if (localStorage.getItem("cart")) {
-      for (let i in arrayJS) {
-        let array = localStorage.getItem("cart"); // je récupère le local storage
-        let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
+// creation de l'array produits
+const products = [];
+// si le local storage existe
+if (localStorage.getItem("cart")) {
+  for (let i in arrayJS) {
+    let array = localStorage.getItem("cart"); // je récupère le local storage
+    let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
 
-        let idProducts = arrayJS[i]._id;
-        arrayId.push(idProducts);
+    let idProducts = arrayJS[i]._id;
+    products.push(idProducts);
 
-        localStorage.setItem("arrayId", arrayId);
+    localStorage.setItem("arrayId", products);
 
-        console.log(arrayId);
-      }
-
-      /*
-        arrayJS.push(article); // je push dedans un nouveau article
-        localStorage.setItem("cart", JSON.stringify(arrayJS)); // je mets le nouveau array en localStorage
-
-        console.log("si il y est deja" + localStorage.getItem("cart")); // test
-
-        // sinon (si le local storage est vide)
-      } else {
-        let array = []; // je crée un array vide
-        array.push(article); // je push dedans un nouveau article
-        localStorage.setItem("cart", JSON.stringify(array)); // je mets l'array en localStorage
-
-        console.log("si il y est pas" + localStorage.getItem("cart")); // test
-        */
-    }
-  });
-};
-validateCart();
+    //console.log(products);
+  }
+}
 
 // objet contenant les info de l'utilisateur
 const contact = {
-  lastName: userSurname,
   firstName: userName,
-  adress: userAddress,
+  lastName: userSurname,
+  address: userAddress,
   city: userCity,
   email: userEmail,
 };
 
-console.log(contact);
+//console.log(contact);
 
-// creation de l'array produits
+const order = {
+  contact: contact,
+  products: products,
+};
 
-// let params = new URL(document.location).searchParams;
-// let userOrder = params.get("order");
-// console.log(userOrder);
-//creation et envoie objet requete
-// let request = new XMLHttpRequest();
-// request.open("GET", "http://localhost:3000/api/cameras/" + userOrder);
-// request.send();
+//console.log(order);
 
-// //attente reponse et appel fonction de retour
-// request.onreadystatechange = function () {
-//   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-//     let order = JSON.parse(this.responseText);
+// fonction pour envoyer la commande
+btn.addEventListener("click", function () {
+  event.preventDefault();
 
-//     console.log(order);
-//   }
-// };
+  const send = (event) => {
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:3000/api/cameras/order");
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(order));
+
+    console.log(JSON.stringify(order));
+
+    //attente reponse et appel fonction de retour
+    request.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        let response = JSON.parse(this.responseText);
+        console.log(response);
+      }
+    };
+  };
+  send();
+});
