@@ -34,7 +34,7 @@
     <script src="https://kit.fontawesome.com/1f2f40a978.js" crossorigin="anonymous"></script>
     <!--end icons-->
 
-    <title>Votre panier</title>
+    <title>Confirmation commande</title>
     <meta
       name="description"
       content="Achat et vente en ligne parmi des des applications thématiques ne vendant qu’un seul groupe de produits.
@@ -57,60 +57,10 @@
 
       <main class="container-main">
         <div class="block-title">
-          <h1>Voici votre panier</h1>
-          <h2>Pour finaliser la commande, veuillez valider votre panier</h2>
+          <h1 id="title"></h1>
         </div>
 
-        <!-- liste panier -->
-        <div id="list-cart"></div>
-
-        <!-- total note -->
-        <div id="total"></div>
-
-        <!-- formulaire -->
-        <form>
-          <h2>Formulaire d'inscription</h2>
-          <!-- nom -->
-          <p>
-            <label for="surname">Nom</label> :
-            <input type="text" name="surname" id="surname" required />
-            <span id="help-surname"></span>
-          </p>
-          <!-- prenom -->
-          <p>
-            <label for="name">Prénom</label> :
-            <input type="text" name="name" id="name" required />
-            <span id="help-name"></span>
-          </p>
-
-          <!-- adresse -->
-          <p>
-            <label for="address">Adresse</label> :
-            <input type="text" name="address" id="address" required />
-            <span id="help-address"></span>
-          </p>
-          <!-- ville -->
-          <p>
-            <label for="city">Ville</label> :
-            <input type="text" name="city" id="city" required />
-            <span id="help-city"></span>
-          </p>
-          <!-- email -->
-          <p>
-            <label for="email">Courriel</label> :
-            <input type="email" name="email" id="email" required placeholder="utilisateur@domaine.fr" />
-            <span id="help-email"></span>
-          </p>
-        </form>
-
-        <!-- onclick="window.location sert pour envoyer, à la validation de la commande, sur la page order-conrfimation -->
-        <input
-          id="btn-validate"
-          class="btn"
-          type="submit"
-          onclick="window.location = 'order-confirmation.html'"
-          value="Valider le panier"
-        />
+        <div id="confirmation"></div>
       </main>
 
       <footer>
@@ -121,6 +71,6 @@
       </footer>
     </div>
 
-    <script src="panier.js"></script>
+    <script src="order-confirmation.js"></script>
   </body>
 </html>

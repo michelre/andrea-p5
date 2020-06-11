@@ -63,7 +63,6 @@ const removeProduct = () => {
     });
   }
 };
-//el.remove();
 
 checkCartContents(); // appel de la fontion 'checkCartContents'
 
@@ -80,13 +79,15 @@ const totalCost = () => {
 };
 const resultTotalCost = totalCost();
 
+// fonction pour montrer la somme du total du panier
 const showTotalCost = () => {
   const divTotal = document.getElementById("total");
-  divTotal.innerHTML = "<span>" + "Totale : " + resultTotalCost + " €</span>";
+  divTotal.innerHTML = "<span>Totale : " + resultTotalCost + " €</span>";
+  localStorage.setItem("totalCost", resultTotalCost);
 };
 showTotalCost();
 
-// fonction pour vérifier les données de l'utilisateur
+// pour vérifier les données de l'utilisateur
 const btnValidate = document.getElementById("btn-validate");
 const surname = document.getElementById("surname");
 const name = document.getElementById("name");
@@ -136,26 +137,6 @@ if (localStorage.getItem("name")) {
   name.setAttribute("value", userName);
 }
 // end prenom
-
-// date de naissance
-date.addEventListener("input", function (e) {
-  if (date.value) {
-    localStorage.setItem("date", date.value); // je sauvegarde l'info en local storage
-    console.log("code valide");
-    btnValidate.removeAttribute("disabled", "");
-    btnValidate.style.opacity = 1;
-  } else {
-    console.log("CODE INVALIDE !!!!!");
-    btnValidate.setAttribute("disabled", "");
-    btnValidate.style.opacity = 0.5;
-  }
-});
-// si il y a l'info dans local storage je l'affiche par default
-let userDate = localStorage.getItem("date");
-if (localStorage.getItem("date")) {
-  date.setAttribute("value", userDate);
-}
-// end date de naissance
 
 // adresse
 let regAddress = /^\d{1,5}.*/i;
@@ -271,7 +252,7 @@ btnValidate.addEventListener("click", function () {
     request.onreadystatechange = function () {
       if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
         let response = JSON.parse(this.responseText);
-        console.log(response);
+        localStorage.setItem("order", JSON.stringify(response));
       }
     };
   };
