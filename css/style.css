@@ -120,6 +120,10 @@ form h2 {
   width: max-content;
 }
 
+form input {
+  width: 100%;
+}
+
 h1 {
   font-family: "Pacifico", cursive;
   font-size: 2em;

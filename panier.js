@@ -87,7 +87,7 @@ const showTotalCost = () => {
 showTotalCost();
 
 // fonction pour vérifier les données de l'utilisateur
-const btn = document.getElementById("btn-validate");
+const btnValidate = document.getElementById("btn-validate");
 const surname = document.getElementById("surname");
 const name = document.getElementById("name");
 const date = document.getElementById("date");
@@ -96,15 +96,17 @@ const city = document.getElementById("city");
 const email = document.getElementById("email");
 
 // nom
-let regSurname = /^([A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])( |'|-|[A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])*/g;
+let regSurname = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/s;
 surname.addEventListener("input", function (e) {
   if (regSurname.test(surname.value)) {
     localStorage.setItem("surname", surname.value); // je sauvegarde l'info en local storage
-    console.log("codice valido");
-    btn.removeAttribute("disabled", "");
+    console.log("code valide");
+    btnValidate.removeAttribute("disabled", "");
+    btnValidate.style.opacity = 1;
   } else {
-    console.log(" codice INVALIDO !!!!!");
-    btn.setAttribute("disabled", "");
+    console.log("CODE INVALIDE !!!!!");
+    btnValidate.setAttribute("disabled", "");
+    btnValidate.style.opacity = 0.5;
   }
 });
 // si il y a l'info dans local storage je l'affiche par default
@@ -115,15 +117,17 @@ if (localStorage.getItem("surname")) {
 // end nom
 
 // prénom
-let regName = /^([A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])( |'|-|[A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])*/g;
+let regName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/s;
 name.addEventListener("input", function (e) {
   if (regName.test(name.value)) {
     localStorage.setItem("name", name.value); // je sauvegarde l'info en local storage
-    console.log("codice valido");
-    btn.removeAttribute("disabled", "");
+    console.log("code valide");
+    btnValidate.removeAttribute("disabled", "");
+    btnValidate.style.opacity = 1;
   } else {
-    console.log(" codice INVALIDO !!!!!");
-    btn.setAttribute("disabled", "");
+    console.log("CODE INVALIDE !!!!!");
+    btnValidate.setAttribute("disabled", "");
+    btnValidate.style.opacity = 0.5;
   }
 });
 // si il y a l'info dans local storage je l'affiche par default
@@ -137,11 +141,13 @@ if (localStorage.getItem("name")) {
 date.addEventListener("input", function (e) {
   if (date.value) {
     localStorage.setItem("date", date.value); // je sauvegarde l'info en local storage
-    console.log("codice valido");
-    btn.removeAttribute("disabled", "");
+    console.log("code valide");
+    btnValidate.removeAttribute("disabled", "");
+    btnValidate.style.opacity = 1;
   } else {
-    console.log(" codice INVALIDO !!!!!");
-    btn.setAttribute("disabled", "");
+    console.log("CODE INVALIDE !!!!!");
+    btnValidate.setAttribute("disabled", "");
+    btnValidate.style.opacity = 0.5;
   }
 });
 // si il y a l'info dans local storage je l'affiche par default
@@ -152,15 +158,17 @@ if (localStorage.getItem("date")) {
 // end date de naissance
 
 // adresse
-let regAddress = /^([A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])( |'|-|[A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])*/g;
+let regAddress = /^\d{1,5}.*/i;
 address.addEventListener("input", function (e) {
   if (regAddress.test(address.value)) {
     localStorage.setItem("address", address.value); // je sauvegarde l'info en local storage
-    console.log("codice valido");
-    btn.removeAttribute("disabled", "");
+    console.log("code valide");
+    btnValidate.removeAttribute("disabled", "");
+    btnValidate.style.opacity = 1;
   } else {
-    console.log(" codice INVALIDO !!!!!");
-    btn.setAttribute("disabled", "");
+    console.log("CODE INVALIDE !!!!!");
+    btnValidate.setAttribute("disabled", "");
+    btnValidate.style.opacity = 0.5;
   }
 });
 // si il y a l'info dans local storage je l'affiche par default
@@ -171,15 +179,17 @@ if (localStorage.getItem("address")) {
 // end adresse de naissance
 
 // ville
-let regCity = /^([A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])( |'|-|[A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])*/g;
+let regCity = /^([A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])( |'|-|[A-Z]|[a-zàáâäçèéêëìíîïñòóôöùúûü])*/i;
 city.addEventListener("input", function (e) {
   if (regCity.test(city.value)) {
     localStorage.setItem("city", city.value); // je sauvegarde l'info en local storage
-    console.log("codice valido");
-    btn.removeAttribute("disabled", "");
+    console.log("code valide");
+    btnValidate.removeAttribute("disabled", "");
+    btnValidate.style.opacity = 1;
   } else {
-    console.log(" codice INVALIDO !!!!!");
-    btn.setAttribute("disabled", "");
+    console.log("CODE INVALIDE !!!!!");
+    btnValidate.setAttribute("disabled", "");
+    btnValidate.style.opacity = 0.5;
   }
 });
 // si il y a l'info dans local storage je l'affiche par default
@@ -190,28 +200,27 @@ if (localStorage.getItem("city")) {
 // end ville de naissance
 
 // email
-let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/i;
 email.addEventListener("input", function (e) {
   if (regEmail.test(email.value)) {
     localStorage.setItem("email", email.value); // je sauvegarde l'info en local storage
-    console.log("codice valido");
-    btn.removeAttribute("disabled", "");
+    console.log("code valide");
+    btnValidate.removeAttribute("disabled", "");
+    btnValidate.style.opacity = 1;
   } else {
-    console.log(" codice INVALIDO !!!!!");
-    btn.setAttribute("disabled", "");
+    console.log("CODE INVALIDE !!!!!");
+    btnValidate.setAttribute("disabled", "");
+    btnValidate.style.opacity = 0.5;
   }
 });
+
 // si il y a l'info dans local storage je l'affiche par default
 let userEmail = localStorage.getItem("email");
 if (localStorage.getItem("email")) {
   email.setAttribute("value", userEmail);
 }
-// end ville de naissance
 
-// creation array pour envoye de la commande
-const btnValidate = document.getElementById("btn-validate");
-
-// creation de l'array produits
+// ********************** creation de l'array produits ********************* //
 const products = [];
 // si le local storage existe
 if (localStorage.getItem("cart")) {
@@ -228,7 +237,7 @@ if (localStorage.getItem("cart")) {
   }
 }
 
-// objet contenant les info de l'utilisateur
+// *************** objet contenant les info de l'utilisateur *************** //
 const contact = {
   firstName: userName,
   lastName: userSurname,
@@ -239,6 +248,8 @@ const contact = {
 
 //console.log(contact);
 
+// ******** order pour l'evoie de la requete = contacts + products ******** //
+
 const order = {
   contact: contact,
   products: products,
@@ -247,7 +258,7 @@ const order = {
 //console.log(order);
 
 // fonction pour envoyer la commande
-btn.addEventListener("click", function () {
+btnValidate.addEventListener("click", function () {
   event.preventDefault();
 
   const send = (event) => {
@@ -256,11 +267,9 @@ btn.addEventListener("click", function () {
     request.setRequestHeader("Content-Type", "application/json");
     request.send(JSON.stringify(order));
 
-    console.log(JSON.stringify(order));
-
     //attente reponse et appel fonction de retour
     request.onreadystatechange = function () {
-      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
         let response = JSON.parse(this.responseText);
         console.log(response);
       }
