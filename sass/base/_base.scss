@@ -139,3 +139,19 @@ form input {
     font-size: 1.5em;
   }
 }
+
+form p {
+  display: flex;
+  width: 50%;
+  input {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 25px;
+  }
+}
+
+.help {
+  font-size: 15px;
+  width: 100%;
+  color: red;
+}

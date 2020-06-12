@@ -18,7 +18,7 @@ const showListProducts = (articles) => {
     // ajout du lien a
     const a = document.createElement("a"); //creation d' un lien a
     a.className = "block-article"; // ajout de la class
-    a.href = "produit.html?id=" + articles[i]._id;
+    a.href = "produits.html?id=" + articles[i]._id;
     const parent = document.getElementById("listProducts"); // ou je vais appliquer le a
     parent.appendChild(a); // ajout de a dans l'element parent
 

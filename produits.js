@@ -13,6 +13,14 @@ request.onreadystatechange = function () {
     showDetailsProduct(product);
     addProduct(product);
   }
+  if (this.readyState != XMLHttpRequest.DONE && this.status != 200) {
+    alert("Désolé, le id du produit n'est pas valide");
+    location.href = "index.html";
+  }
+  if (idArticle == 0) {
+    alert("Désolé, le id du produit n'est pas valide");
+    location.href = "index.html";
+  }
 };
 
 // fonction pour montrer la liste des produits
