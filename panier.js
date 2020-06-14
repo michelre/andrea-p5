@@ -65,168 +65,166 @@ const showTotalCost = () => {
 showTotalCost();
 
 // pour vérifier les données de l'utilisateur
-
-// prénom
-let regName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
-name.addEventListener("input", function (e) {
-  if (regName.test(name.value)) {
-    localStorage.setItem("name", name.value); // je sauvegarde l'info en local storage
+const validForm = (id, regex, valueText, key) => {
+  if (regex.test(valueText)) {
+    localStorage.setItem(key, valueText); // je sauvegarde l'info en local storage
     console.log("code valide");
     btnValidate.removeAttribute("disabled", "");
     btnValidate.style.opacity = 1;
-    const helpName = document.getElementById("help-name");
-    helpName.textContent = "";
+    const help = document.getElementById(id);
+    help.textContent = "";
   } else {
     console.log("CODE INVALIDE !!!!!");
     btnValidate.setAttribute("disabled", "");
     btnValidate.style.opacity = 0.5;
-    const helpName = document.getElementById("help-name");
-    helpName.textContent = "Veuillez insérer un prénom valide";
+    const help = document.getElementById(id);
+    help.textContent = "Cela n'est pas valide, veuillez saisir l'information correctement";
   }
-});
-// si il y a l'info dans local storage je l'affiche par default
-let userName = localStorage.getItem("name");
-if (localStorage.getItem("name")) {
-  name.setAttribute("value", userName);
-}
-// end prenom
-
-// nom
-let regSurname = /^^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
-surname.addEventListener("input", function (e) {
-  if (regSurname.test(surname.value)) {
-    localStorage.setItem("surname", surname.value); // je sauvegarde l'info en local storage
-    console.log("code valide");
-    btnValidate.removeAttribute("disabled", "");
-    btnValidate.style.opacity = 1;
-    const helpSurname = document.getElementById("help-surname");
-    helpSurname.innerHTML = "";
-  } else {
-    console.log("CODE INVALIDE !!!!!");
-    btnValidate.setAttribute("disabled", "");
-    btnValidate.style.opacity = 0.5;
-    const helpSurname = document.getElementById("help-surname");
-    helpSurname.textContent = "Veuillez insérer un nom valide";
-  }
-});
-// si il y a l'info dans local storage je l'affiche par default
-let userSurname = localStorage.getItem("surname");
-if (localStorage.getItem("surname")) {
-  surname.setAttribute("value", userSurname);
-}
-// end nom
-
-// adresse
-let regAddress = /^\d{1,5}.*/i;
-address.addEventListener("input", function (e) {
-  if (regAddress.test(address.value)) {
-    localStorage.setItem("address", address.value); // je sauvegarde l'info en local storage
-    console.log("code valide");
-    btnValidate.removeAttribute("disabled", "");
-    btnValidate.style.opacity = 1;
-    const helpAddress = document.getElementById("help-address");
-    helpAddress.textContent = "";
-  } else {
-    console.log("CODE INVALIDE !!!!!");
-    btnValidate.setAttribute("disabled", "");
-    btnValidate.style.opacity = 0.5;
-    const helpAddress = document.getElementById("help-address");
-    helpAddress.textContent = "Veuillez insérer une adresse valide";
-  }
-});
-// si il y a l'info dans local storage je l'affiche par default
-let userAddress = localStorage.getItem("address");
-if (localStorage.getItem("address")) {
-  address.setAttribute("value", userAddress);
-}
-// end adresse
-
-// ville
-let regCity = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
-city.addEventListener("input", function (e) {
-  if (regCity.test(city.value)) {
-    localStorage.setItem("city", city.value); // je sauvegarde l'info en local storage
-    console.log("code valide");
-    btnValidate.removeAttribute("disabled", "");
-    btnValidate.style.opacity = 1;
-    const helpCity = document.getElementById("help-city");
-    helpCity.textContent = "";
-  } else {
-    console.log("CODE INVALIDE !!!!!");
-    btnValidate.setAttribute("disabled", "");
-    btnValidate.style.opacity = 0.5;
-    const helpCity = document.getElementById("help-city");
-    helpCity.textContent = "Veuillez insérer une ville valide";
-  }
-});
-// si il y a l'info dans local storage je l'affiche par default
-let userCity = localStorage.getItem("city");
-if (localStorage.getItem("city")) {
-  city.setAttribute("value", userCity);
-}
-// end ville
-
-// email
-let regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/i;
-email.addEventListener("input", function (e) {
-  if (regEmail.test(email.value)) {
-    localStorage.setItem("email", email.value); // je sauvegarde l'info en local storage
-    console.log("code valide");
-    btnValidate.removeAttribute("disabled", "");
-    btnValidate.style.opacity = 1;
-    const helpEmail = document.getElementById("help-email");
-    helpEmail.textContent = "";
-  } else {
-    console.log("CODE INVALIDE !!!!!");
-    btnValidate.setAttribute("disabled", "");
-    btnValidate.style.opacity = 0.5;
-    const helpEmail = document.getElementById("help-email");
-    helpEmail.textContent = "Veuillez insérer une adresse email valide";
-  }
-});
-
-// si il y a l'info dans local storage je l'affiche par default
-let userEmail = localStorage.getItem("email");
-if (localStorage.getItem("email")) {
-  email.setAttribute("value", userEmail);
-}
-
-// ********************** creation de l'array produits ********************* //
-const products = [];
-// si le local storage existe
-if (localStorage.getItem("cart")) {
-  for (let i in arrayJS) {
-    let array = localStorage.getItem("cart"); // je récupère le local storage
-    let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
-
-    let idProducts = arrayJS[i]._id;
-    products.push(idProducts);
-
-    localStorage.setItem("arrayId", products);
-  }
-}
-
-// *************** objet contenant les info de l'utilisateur *************** //
-const contact = {
-  firstName: userName,
-  lastName: userSurname,
-  address: userAddress,
-  city: userCity,
-  email: userEmail,
 };
 
-console.log(contact);
+// expressions régulières
+const regName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
+const regSurname = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
+const regAddress = /^\d{1,5}.*/i;
+const regCity = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
+const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/i;
 
-// ******** order pour l'evoie de la requete = contacts + products ******** //
+name.addEventListener("input", (e) => {
+  validForm("help-name", regName, name.value, "name");
+});
+surname.addEventListener("input", (e) => {
+  validForm("help-surname", regSurname, surname.value, "surname");
+});
+address.addEventListener("input", (e) => {
+  validForm("help-address", regAddress, address.value, "address");
+});
+city.addEventListener("input", (e) => {
+  validForm("help-city", regCity, city.value, "city");
+});
+email.addEventListener("input", (e) => {
+  validForm("help-email", regEmail, email.value, "email");
+});
 
-const order = {
-  contact,
-  products,
-};
+// // si il y a l'info dans local storage je l'affiche par default
+
+// let userName = localStorage.getItem("name");
+// if (userName) {
+//   name.setAttribute("value", userName);
+// }
+
+// let userSurname = localStorage.getItem("surname");
+// if (userSurname) {
+//   surname.setAttribute("value", userSurname);
+// }
+
+// let userAddress = localStorage.getItem("address");
+// if (userAddress) {
+//   address.setAttribute("value", userAddress);
+// }
+
+// let userCity = localStorage.getItem("city");
+// if (userCity) {
+//   city.setAttribute("value", userCity);
+// }
+
+// let userEmail = localStorage.getItem("email");
+// if (userEmail) {
+//   email.setAttribute("value", userEmail);
+// }
+
+// // ********************** creation de l'array produits ********************* //
+// const products = [];
+// // si le local storage existe
+// if (localStorage.getItem("cart")) {
+//   for (let i in arrayJS) {
+//     let array = localStorage.getItem("cart"); // je récupère le local storage
+//     let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
+
+//     let idProducts = arrayJS[i]._id;
+//     products.push(idProducts);
+
+//     localStorage.setItem("arrayId", products);
+//   }
+// }
+
+// // *************** objet contenant les info de l'utilisateur *************** //
+// const contact = {
+//   firstName: userName,
+//   lastName: userSurname,
+//   address: userAddress,
+//   city: userCity,
+//   email: userEmail,
+// };
+
+// // ******** order pour l'evoie de la requete = contacts + products ******** //
+
+// const order = {
+//   contact,
+//   products,
+// };
+// console.log(order);
 
 // fonction pour envoyer la commande
 const sendOrder = () => {
   btnValidate.addEventListener("click", () => {
+    // si il y a l'info dans local storage je l'affiche par default
+
+    let userName = localStorage.getItem("name");
+    if (userName) {
+      name.setAttribute("value", userName);
+    }
+
+    let userSurname = localStorage.getItem("surname");
+    if (userSurname) {
+      surname.setAttribute("value", userSurname);
+    }
+
+    let userAddress = localStorage.getItem("address");
+    if (userAddress) {
+      address.setAttribute("value", userAddress);
+    }
+
+    let userCity = localStorage.getItem("city");
+    if (userCity) {
+      city.setAttribute("value", userCity);
+    }
+
+    let userEmail = localStorage.getItem("email");
+    if (userEmail) {
+      email.setAttribute("value", userEmail);
+    }
+
+    // ********************** creation de l'array produits ********************* //
+    const products = [];
+    // si le local storage existe
+    if (localStorage.getItem("cart")) {
+      for (let i in arrayJS) {
+        let array = localStorage.getItem("cart"); // je récupère le local storage
+        let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
+
+        let idProducts = arrayJS[i]._id;
+        products.push(idProducts);
+
+        localStorage.setItem("arrayId", products);
+      }
+    }
+
+    // *************** objet contenant les info de l'utilisateur *************** //
+    const contact = {
+      firstName: userName,
+      lastName: userSurname,
+      address: userAddress,
+      city: userCity,
+      email: userEmail,
+    };
+
+    // ******** order pour l'evoie de la requete = contacts + products ******** //
+
+    const order = {
+      contact,
+      products,
+    };
+    console.log(order);
     const send = (event) => {
       let request = new XMLHttpRequest();
       request.open("POST", "http://localhost:3000/api/cameras/order");
@@ -240,7 +238,7 @@ const sendOrder = () => {
 
           localStorage.setItem("order", JSON.stringify(response));
 
-          // location.href = "order-confirmation.html";
+          //location.href = "order-confirmation.html";
           console.log(response);
         }
       };
