@@ -65,9 +65,9 @@ const showTotalCost = () => {
 showTotalCost();
 
 // pour vérifier les données de l'utilisateur
-const validForm = (id, regex, valueText, key) => {
-  if (regex.test(valueText)) {
-    localStorage.setItem(key, valueText); // je sauvegarde l'info en local storage
+const validForm = async (id, regex, label, key) => {
+  if (regex.test(label.value)) {
+    const result = await localStorage.setItem(key, label.value); // je sauvegarde l'info en local storage
     console.log("code valide");
     btnValidate.removeAttribute("disabled", "");
     btnValidate.style.opacity = 1;
@@ -82,6 +82,13 @@ const validForm = (id, regex, valueText, key) => {
   }
 };
 
+// si il y a l'info dans local storage je l'affiche par default
+const showLocalStorage = (label, key) => {
+  if (localStorage.getItem(key)) {
+    label.setAttribute("value", localStorage.getItem(key));
+  }
+};
+
 // expressions régulières
 const regName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
 const regSurname = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]+( |,|.|'|-)*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]$/s;
@@ -90,126 +97,53 @@ const regCity = /^[a-zA-Zàáâäãåąčćęèéêëėįìíîïłńòóôöõ�
 const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/i;
 
 name.addEventListener("input", (e) => {
-  validForm("help-name", regName, name.value, "name");
+  validForm("help-name", regName, name, "name");
 });
+showLocalStorage(name, "name");
+
 surname.addEventListener("input", (e) => {
-  validForm("help-surname", regSurname, surname.value, "surname");
+  validForm("help-surname", regSurname, surname, "surname");
 });
+showLocalStorage(surname, "surname");
+
 address.addEventListener("input", (e) => {
-  validForm("help-address", regAddress, address.value, "address");
+  validForm("help-address", regAddress, address, "address");
 });
+showLocalStorage(address, "address");
+
 city.addEventListener("input", (e) => {
-  validForm("help-city", regCity, city.value, "city");
+  validForm("help-city", regCity, city, "city");
 });
+showLocalStorage(city, "city");
+
 email.addEventListener("input", (e) => {
-  validForm("help-email", regEmail, email.value, "email");
+  validForm("help-email", regEmail, email, "email");
 });
-
-// // si il y a l'info dans local storage je l'affiche par default
-
-// let userName = localStorage.getItem("name");
-// if (userName) {
-//   name.setAttribute("value", userName);
-// }
-
-// let userSurname = localStorage.getItem("surname");
-// if (userSurname) {
-//   surname.setAttribute("value", userSurname);
-// }
-
-// let userAddress = localStorage.getItem("address");
-// if (userAddress) {
-//   address.setAttribute("value", userAddress);
-// }
-
-// let userCity = localStorage.getItem("city");
-// if (userCity) {
-//   city.setAttribute("value", userCity);
-// }
-
-// let userEmail = localStorage.getItem("email");
-// if (userEmail) {
-//   email.setAttribute("value", userEmail);
-// }
-
-// // ********************** creation de l'array produits ********************* //
-// const products = [];
-// // si le local storage existe
-// if (localStorage.getItem("cart")) {
-//   for (let i in arrayJS) {
-//     let array = localStorage.getItem("cart"); // je récupère le local storage
-//     let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
-
-//     let idProducts = arrayJS[i]._id;
-//     products.push(idProducts);
-
-//     localStorage.setItem("arrayId", products);
-//   }
-// }
-
-// // *************** objet contenant les info de l'utilisateur *************** //
-// const contact = {
-//   firstName: userName,
-//   lastName: userSurname,
-//   address: userAddress,
-//   city: userCity,
-//   email: userEmail,
-// };
-
-// // ******** order pour l'evoie de la requete = contacts + products ******** //
-
-// const order = {
-//   contact,
-//   products,
-// };
-// console.log(order);
+showLocalStorage(email, "email");
 
 // fonction pour envoyer la commande
 const sendOrder = () => {
   btnValidate.addEventListener("click", () => {
-    // si il y a l'info dans local storage je l'affiche par default
-
     let userName = localStorage.getItem("name");
-    if (userName) {
-      name.setAttribute("value", userName);
-    }
-
     let userSurname = localStorage.getItem("surname");
-    if (userSurname) {
-      surname.setAttribute("value", userSurname);
-    }
-
     let userAddress = localStorage.getItem("address");
-    if (userAddress) {
-      address.setAttribute("value", userAddress);
-    }
-
     let userCity = localStorage.getItem("city");
-    if (userCity) {
-      city.setAttribute("value", userCity);
-    }
-
     let userEmail = localStorage.getItem("email");
-    if (userEmail) {
-      email.setAttribute("value", userEmail);
-    }
 
-    // ********************** creation de l'array produits ********************* //
+    // creation de l'array produits
     const products = [];
     // si le local storage existe
     if (localStorage.getItem("cart")) {
       for (let i in arrayJS) {
         let array = localStorage.getItem("cart"); // je récupère le local storage
         let arrayJS = JSON.parse(array); // je transforme le contenu JSON en JS
-
         let idProducts = arrayJS[i]._id;
         products.push(idProducts);
-
         localStorage.setItem("arrayId", products);
       }
     }
 
-    // *************** objet contenant les info de l'utilisateur *************** //
+    // creation de l' objet contenant les info de l'utilisateur
     const contact = {
       firstName: userName,
       lastName: userSurname,
@@ -218,13 +152,13 @@ const sendOrder = () => {
       email: userEmail,
     };
 
-    // ******** order pour l'evoie de la requete = contacts + products ******** //
-
+    // order pour l'evoie de la requete
     const order = {
       contact,
       products,
     };
     console.log(order);
+
     const send = (event) => {
       let request = new XMLHttpRequest();
       request.open("POST", "http://localhost:3000/api/cameras/order");
@@ -235,10 +169,8 @@ const sendOrder = () => {
       request.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
           let response = JSON.parse(this.responseText);
-
           localStorage.setItem("order", JSON.stringify(response));
-
-          //location.href = "order-confirmation.html";
+          location.href = "order-confirmation.html";
           console.log(response);
         }
       };
@@ -282,4 +214,4 @@ const removeProduct = () => {
   }
 };
 
-checkCartContents(); // appel de la fontion pour vérifier si le panier est rempli ou vide
+checkCartContents(); // appel de la fonction pour vérifier si le panier est rempli ou vide
