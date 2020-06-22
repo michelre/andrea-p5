@@ -13,11 +13,11 @@ request.onreadystatechange = function () {
     showDetailsProduct(product);
     addProduct(product);
   }
-  if (this.readyState != XMLHttpRequest.DONE && this.status != 200) {
+  if (this.readyState != XMLHttpRequest.DONE && this.status != 200 && this.readyState == 3) {
     alert("Désolé, le id du produit n'est pas valide");
     location.href = "index.html";
   }
-  if (idArticle == 0) {
+  if (idArticle == 0 && this.readyState == 3) {
     alert("Désolé, le id du produit n'est pas valide");
     location.href = "index.html";
   }
@@ -56,7 +56,7 @@ const addProduct = (article) => {
   const btnAdd = document.getElementById("btn-add");
   btnAdd.addEventListener("click", function () {
     event.preventDefault(); // pour enlever les fonctions par défaut du bouton
-
+    alert("Le produit a été ajouté au panier !");
     // si le local storage existe
     if (localStorage.getItem("cart")) {
       let array = localStorage.getItem("cart"); // je récupère le local storage
