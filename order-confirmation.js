@@ -13,7 +13,7 @@ const confirmOrder = () => {
     for (let i in orderJS) {
       title.innerHTML = "Merci " + orderJS.contact.firstName + " " + orderJS.contact.lastName + " pour votre commande.";
       orderConfirmation.innerHTML =
-        "<span>Vous avez payé : " + totalCostJS + " €</span><br /><span>Le numero de votre commande est : <br/>" + orderJS.orderId + "</span>";
+        "<span>Vous avez payé : <br />" + totalCostJS + " €</span><br /><span>Le numero de votre commande est : <br/>" + orderJS.orderId + "</span>";
     }
     // si il n y a rien renvoi vers la page d'accueil
   } else {

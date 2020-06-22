@@ -30,6 +30,7 @@ body {
   margin-top: 20px;
   justify-content: space-around;
   align-items: center;
+  padding: 2%;
   .block-article__img {
     padding: 5px;
     margin-top: 13px;
@@ -131,10 +132,9 @@ form input {
   justify-content: center;
   align-items: center;
   border: 5px solid red;
-  width: 50%;
-  height: 120px;
-  margin: auto;
+  margin: 5%;
   padding: 20px;
+  text-align: center;
   span {
     font-size: 1.5em;
   }
@@ -142,7 +142,8 @@ form input {
 
 form p {
   display: flex;
-  width: 50%;
+  width: 100%;
+  flex-flow: wrap;
   input {
     margin-left: 5%;
     margin-right: 5%;
