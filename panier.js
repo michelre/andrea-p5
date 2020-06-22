@@ -173,6 +173,9 @@ const sendOrder = () => {
           location.href = "order-confirmation.html";
           console.log(response);
         }
+        if (this.status == 400 && this.readyState == 3) {
+          alert("Veuillez remplir le formulaire avant de valider votre commande");
+        }
       };
     };
     send(); // appel de la fonction pour l'envoye de la commande
