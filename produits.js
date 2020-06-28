@@ -1,29 +1,6 @@
 let params = new URL(document.location).searchParams;
 let idArticle = params.get("id");
 
-class Ajax {
-  get(url) {
-    return new Promise((resolve, reject) => {
-      //creation et envoie objet requete
-      let request = new XMLHttpRequest();
-      request.open("GET", url);
-      request.send();
-      //attente reponse et appel fonction de retour
-      request.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-          if (this.status === 200) {
-            // si tout c'est bien passée
-            resolve(JSON.parse(this.responseText)); // recuperation de la liste de produits
-          } else {
-            reject(alert("Désolé, le id du produit n'est pas valide"));
-            location.href = "index.html";
-          }
-        }
-      };
-    });
-  }
-}
-
 const ajax = new Ajax();
 ajax.get("http://localhost:3000/api/cameras/" + idArticle)
   .then((product) => {
