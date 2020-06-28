@@ -1,16 +1,31 @@
-//creation et envoie objet requete
-let request = new XMLHttpRequest();
-request.open("GET", "http://localhost:3000/api/cameras");
-request.send();
+class Ajax {
 
-//attente reponse et appel fonction de retour
-request.onreadystatechange = function () {
-  if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    // si tout c'est bien passée
-    let products = JSON.parse(this.responseText); // recuperation de la liste de produits
+  get(url) {
+    return new Promise((resolve, reject) => {
+      //creation et envoie objet requete
+      let request = new XMLHttpRequest();
+      request.open("GET", url);
+      request.send();
+      //attente reponse et appel fonction de retour
+      request.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            // si tout c'est bien passée
+            resolve(JSON.parse(this.responseText)); // recuperation de la liste de produits
+          } else {
+            reject()
+          }
+        }
+      }
+    });
+  };
+}
+
+const ajax = new Ajax();
+ajax.get("http://localhost:3000/api/cameras")
+  .then((products) => {
     showListProducts(products); //appel de la fonction d'affichage des produits
-  }
-};
+  });
 
 //declaration de la fonction d'affichage des produits
 const showListProducts = (articles) => {
@@ -43,3 +58,4 @@ const showListProducts = (articles) => {
     p.innerHTML = "Prix de l'article : " + articles[i].price + " €";
   }
 };
+

@@ -23,8 +23,8 @@ const confirmOrder = () => {
 };
 
 // dès que l'utilisateur reçois la confirmation de la commande, le panier sera vidé
-async function deleteOrder() {
-  const result = await confirmOrder(); // attends que la fonction soit terminée
+function deleteOrder() {
+  const result = confirmOrder(); // attends que la fonction soit terminée
   localStorage.removeItem("cart"); // avant de effacer le local storage
 }
 

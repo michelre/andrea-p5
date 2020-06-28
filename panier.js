@@ -121,6 +121,28 @@ email.addEventListener("input", (e) => {
 });
 showLocalStorage(email, "email");
 
+class Ajax {
+
+  post(url) {
+    let request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(order));
+
+    //attente reponse et appel fonction de retour
+    request.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
+        resolve(JSON.parse(this.responseText));
+
+      }
+      if (this.status == 400 && this.readyState == 3) {
+        alert("Veuillez remplir le formulaire avant de valider votre commande");
+      }
+    };
+  }
+
+}
+
 // fonction pour envoyer la commande
 const sendOrder = () => {
   btnValidate.addEventListener("click", () => {
@@ -158,6 +180,13 @@ const sendOrder = () => {
       products,
     };
     console.log(order);
+
+    const ajax = new Ajax();
+    ajax.post("http://localhost:3000/api/cameras/order")
+      .then((products) => {
+        showListProducts(products); //appel de la fonction d'affichage des produits
+      });
+
 
     const send = (event) => {
       let request = new XMLHttpRequest();

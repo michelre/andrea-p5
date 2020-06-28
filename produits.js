@@ -1,27 +1,39 @@
 let params = new URL(document.location).searchParams;
 let idArticle = params.get("id");
 
-//creation et envoie objet requete
-let request = new XMLHttpRequest();
-request.open("GET", "http://localhost:3000/api/cameras/" + idArticle);
-request.send();
+class Ajax {
+  get(url) {
+    return new Promise((resolve, reject) => {
+      //creation et envoie objet requete
+      let request = new XMLHttpRequest();
+      request.open("GET", url);
+      request.send();
+      //attente reponse et appel fonction de retour
+      request.onreadystatechange = function () {
+        if (this.readyState === XMLHttpRequest.DONE) {
+          if (this.status === 200) {
+            // si tout c'est bien passée
+            resolve(JSON.parse(this.responseText)); // recuperation de la liste de produits
+          } else {
+            reject(alert("Désolé, le id du produit n'est pas valide"));
+            location.href = "index.html";
+          }
+        }
+      };
+    });
+  }
+}
 
-//attente reponse et appel fonction de retour
-request.onreadystatechange = function () {
-  if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    let product = JSON.parse(this.responseText);
+const ajax = new Ajax();
+ajax.get("http://localhost:3000/api/cameras/" + idArticle)
+  .then((product) => {
     showDetailsProduct(product);
     addProduct(product);
-  }
-  if (this.readyState != XMLHttpRequest.DONE && this.status != 200 && this.readyState == 3) {
-    alert("Désolé, le id du produit n'est pas valide");
-    location.href = "index.html";
-  }
-  if (idArticle == 0 && this.readyState == 3) {
-    alert("Désolé, le id du produit n'est pas valide");
-    location.href = "index.html";
-  }
-};
+  },
+    () => {
+      // Todo: Traiter les erreurs
+    }
+  );
 
 // fonction pour montrer la liste des produits
 const showDetailsProduct = (article) => {
