@@ -121,28 +121,6 @@ email.addEventListener("input", (e) => {
 });
 showLocalStorage(email, "email");
 
-// class Ajax {
-
-//   post(url) {
-//     let request = new XMLHttpRequest();
-//     request.open("POST", url);
-//     request.setRequestHeader("Content-Type", "application/json");
-//     request.send(JSON.stringify(order));
-
-//     //attente reponse et appel fonction de retour
-//     request.onreadystatechange = function () {
-//       if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-//         resolve(JSON.parse(this.responseText));
-
-//       }
-//       if (this.status == 400 && this.readyState == 3) {
-//         alert("Veuillez remplir le formulaire avant de valider votre commande");
-//       }
-//     };
-//   }
-
-// }
-
 // fonction pour envoyer la commande
 const sendOrder = () => {
   btnValidate.addEventListener("click", () => {
@@ -179,37 +157,17 @@ const sendOrder = () => {
       contact,
       products,
     };
-    console.log(order);
-
-    // const ajax = new Ajax();
-    // ajax.post("http://localhost:3000/api/cameras/order", order)
-    //   .then((data) => {
-
-    //     console.log(data)
-
-    //   }).catch((e) => {
-    //     console.log(e);
-    //   });
-
 
     const send = (event) => {
-      let request = new XMLHttpRequest();
-      request.open("POST", "http://localhost:3000/api/cameras/order");
-      request.setRequestHeader("Content-Type", "application/json");
-      request.send(JSON.stringify(order));
-
-      //attente reponse et appel fonction de retour
-      request.onreadystatechange = function () {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-          let response = JSON.parse(this.responseText);
-          localStorage.setItem("order", JSON.stringify(response));
-          location.href = "order-confirmation.html";
-          console.log(response);
-        }
-        if (this.status == 400 && this.readyState == 3) {
-          alert("Veuillez remplir le formulaire avant de valider votre commande");
-        }
-      };
+      const ajax = new Ajax();
+      ajax.post("https://oc-p5-api.herokuapp.com/api/cameras/order", order).then((response) => {
+        console.log(response)
+        localStorage.setItem("order", JSON.stringify(response));
+        location.href = "order-confirmation.html";
+        console.log(response);
+      }, () => {
+        alert("Veuillez remplir le formulaire avant de valider votre commande");
+      })
     };
     send(); // appel de la fonction pour l'envoye de la commande
   });

@@ -1,6 +1,6 @@
 
 const ajax = new Ajax();
-ajax.get("http://localhost:3000/api/cameras")
+ajax.get("https://oc-p5-api.herokuapp.com/api/cameras")
   .then((products) => {
     showListProducts(products); //appel de la fonction d'affichage des produits
   });

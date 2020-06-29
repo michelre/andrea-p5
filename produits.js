@@ -2,7 +2,7 @@ let params = new URL(document.location).searchParams;
 let idArticle = params.get("id");
 
 const ajax = new Ajax();
-ajax.get("http://localhost:3000/api/cameras/" + idArticle)
+ajax.get("https://oc-p5-api.herokuapp.com/api/cameras/" + idArticle)
   .then((product) => {
     showDetailsProduct(product);
     addProduct(product);
